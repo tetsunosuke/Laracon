@@ -6,7 +6,7 @@
 
 use \PHPUnit\Framework\TestCase;
 
-require_once(__DIR__ . '/../question/q001/Wareki.php');
+require_once __DIR__ . '/../question/q001/Wareki.php';
 
 class TestWareki extends TestCase
 {

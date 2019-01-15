@@ -4,7 +4,7 @@
  * User: fortegp05
  */
 
-require_once './Wareki.php';
+require_once __DIR__ . '/Wareki.php';
 
 if ($argc < 2) return Wareki::ERROR_MSG;
 
