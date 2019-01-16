@@ -4,3 +4,4 @@
 /tests/*.exp
 /tests/*.out
 /tests/*.diff
+/question/q001/q001.php

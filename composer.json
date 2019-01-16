@@ -1,0 +1,12 @@
+{
+  "autoload": {
+    "psr-4": {
+      "LaravelJpCon\\": "question/"
+    }
+  },
+  "name": "laravel-jp-con/work-shop",
+  "require": {},
+  "require-dev": {
+    "phpunit/phpunit": "^7.5"
+  }
+}

@@ -4,6 +4,15 @@
  * Created by PhpStorm.
  * User: fortegp05
  */
+
+namespace LaravelJpCon\Q001;
+
+use DateTime;
+
+/**
+ * Class Wareki
+ * @package LaravelJpCon\Question\Q001
+ */
 class Wareki
 {
     const MEIJI = 'M';
