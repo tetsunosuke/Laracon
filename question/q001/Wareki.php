@@ -5,13 +5,13 @@
  * User: fortegp05
  */
 
-namespace LaravelJpCon\Q001;
+namespace LaravelJpCon\q001;
 
 use DateTime;
 
 /**
  * Class Wareki
- * @package LaravelJpCon\Question\Q001
+ * @package LaravelJpCon\Question\1001
  */
 class Wareki
 {
@@ -23,11 +23,11 @@ class Wareki
     const DATE_FORMAT = 'Ymd';
     const ERROR_MSG = 'ERROR';
     private $wareki_start_days = [
-        Wareki::MEIJI => '18680125',
-        Wareki::TAISYO => '19120730',
-        Wareki::SYOWA => '19261225',
-        Wareki::HEISEI => '19890108',
-        Wareki::NEW_GENGO => '20190501'
+        self::MEIJI => '18680125',
+        self::TAISYO => '19120730',
+        self::SYOWA => '19261225',
+        self::HEISEI => '19890108',
+        self::NEW_GENGO => '20190501'
     ];
 
     /** yyyymmddを入力すると和暦を返す
