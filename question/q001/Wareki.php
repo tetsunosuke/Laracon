@@ -11,7 +11,7 @@ use DateTime;
 
 /**
  * Class Wareki
- * @package LaravelJpCon\Question\1001
+ * @package LaravelJpCon\Question\q001
  */
 class Wareki
 {
@@ -38,25 +38,25 @@ class Wareki
     public function getWareki(string $ymd): string
     {
         if (!$this->isDate($ymd)) {
-            return Wareki::ERROR_MSG;
+            return self::ERROR_MSG;
         }
 
         switch (true) {
-            case $ymd < $this->wareki_start_days[Wareki::MEIJI]:
-                return Wareki::ERROR_MSG;
-            case $this->wareki_start_days[Wareki::MEIJI] <= $ymd && $ymd < $this->wareki_start_days[Wareki::TAISYO]:
-                return Wareki::MEIJI;
-            case $this->wareki_start_days[Wareki::TAISYO] <= $ymd && $ymd < $this->wareki_start_days[Wareki::SYOWA]:
-                return Wareki::TAISYO;
-            case $this->wareki_start_days[Wareki::SYOWA] <= $ymd && $ymd < $this->wareki_start_days[Wareki::HEISEI]:
-                return Wareki::SYOWA;
-            case $this->wareki_start_days[Wareki::HEISEI] <= $ymd && $ymd < $this->wareki_start_days[Wareki::NEW_GENGO]:
-                return Wareki::HEISEI;
-            case $this->wareki_start_days[Wareki::NEW_GENGO] <= $ymd:
-                return Wareki::NEW_GENGO;
+            case $ymd < $this->wareki_start_days[self::MEIJI]:
+                return self::ERROR_MSG;
+            case $this->wareki_start_days[self::MEIJI] <= $ymd && $ymd < $this->wareki_start_days[self::TAISYO]:
+                return self::MEIJI;
+            case $this->wareki_start_days[self::TAISYO] <= $ymd && $ymd < $this->wareki_start_days[self::SYOWA]:
+                return self::TAISYO;
+            case $this->wareki_start_days[self::SYOWA] <= $ymd && $ymd < $this->wareki_start_days[self::HEISEI]:
+                return self::SYOWA;
+            case $this->wareki_start_days[self::HEISEI] <= $ymd && $ymd < $this->wareki_start_days[self::NEW_GENGO]:
+                return self::HEISEI;
+            case $this->wareki_start_days[self::NEW_GENGO] <= $ymd:
+                return self::NEW_GENGO;
         }
 
-        return Wareki::ERROR_MSG;
+        return self::ERROR_MSG;
     }
 
     /** 引数チェックyyyymmddの妥当性チェック
@@ -65,7 +65,7 @@ class Wareki
      */
     private function isDate(string $ymd): bool
     {
-        $date = DateTime::createFromFormat(Wareki::DATE_FORMAT, $ymd);
-        return $date && $date->format(Wareki::DATE_FORMAT) == $ymd;
+        $date = DateTime::createFromFormat(self::DATE_FORMAT, $ymd);
+        return $date && $date->format(self::DATE_FORMAT) == $ymd;
     }
 }
