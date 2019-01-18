@@ -5,3 +5,4 @@
 /tests/*.out
 /tests/*.diff
 /question/q001/q001.php
+/question/q002/q002.php
