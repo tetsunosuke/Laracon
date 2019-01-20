@@ -41,7 +41,7 @@ class YamanoteLine
         '新橋駅',
         '有楽町駅'
     ];
-    private $cursol = 0;
+    private $cursor = 0;
 
     /**
      * 現在の駅を取得する(東京から始まる)
@@ -49,7 +49,19 @@ class YamanoteLine
      */
     public function nowStation(): string
     {
-        return $this->stations[$this->cursol];
+        return $this->stations[$this->cursor];
+    }
+
+    /**
+     * @return string
+     */
+    public function moveCursorUchimawari(): void
+    {
+        $this->cursor++;
+
+        if ($this->cursor > (count($this->stations) - 1)) {
+            $this->cursor = 0;
+        }
     }
 
     /**
@@ -58,13 +70,21 @@ class YamanoteLine
      */
     public function nextStationUchimawari(): string
     {
-        $this->cursol++;
+        // カーソル移動して駅名を取得する
+        $this->moveCursorUchimawari();
+        return $this->nowStation();
+    }
 
-        if ($this->cursol > (count($this->stations) - 1)) {
-            $this->cursol = 0;
+    /**
+     * @return string
+     */
+    public function moveCursorSotomawari(): void
+    {
+        $this->cursor--;
+
+        if ($this->cursor < 0) {
+            $this->cursor = count($this->stations) - 1;
         }
-        
-        return $this->stations[$this->cursol];
     }
 
     /**
@@ -73,13 +93,9 @@ class YamanoteLine
      */
     public function nextStationSotomawari(): string
     {
-        $this->cursol--;
-
-        if ($this->cursol < 0) {
-            $this->cursol = count($this->stations) - 1;
-        }
-
-        return $this->stations[$this->cursol];
+        // カーソル移動して駅名を取得する
+        $this->moveCursorSotomawari();
+        return $this->nowStation();
     }
 
     /**
@@ -87,6 +103,6 @@ class YamanoteLine
      */
     public function reset(): void
     {
-        $this->cursol = 0;
+        $this->cursor = 0;
     }
 }

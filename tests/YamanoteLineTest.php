@@ -12,15 +12,14 @@ use PHPUnit\Framework\TestCase;
  */
 class YamanoteLineTest extends TestCase
 {
-    private static $yamanoteLine;
+    private $yamanoteLine;
 
     /**
      * 初期設定
      */
-    public static function setUpBeforeClass()
+    public function setUp()
     {
-        // テストクラス内でオブジェクトを使い回すためstaticで宣言する
-        self::$yamanoteLine = new YamanoteLine();
+        $this->yamanoteLine = new YamanoteLine();
     }
 
     /**
@@ -28,7 +27,7 @@ class YamanoteLineTest extends TestCase
      */
     public function test_startStationIsTokyo()
     {
-        $this->assertSame('東京駅', self::$yamanoteLine->nowStation(), '東京から始まっているか?');
+        $this->assertSame('東京駅', $this->yamanoteLine->nowStation(), '東京から始まっているか?');
     }
 
     /**
@@ -36,7 +35,7 @@ class YamanoteLineTest extends TestCase
      */
     public function test_uchimawari()
     {
-        $this->assertSame('神田駅', self::$yamanoteLine->nextStationUchimawari(), '内回りの駅確認');
+        $this->assertSame('神田駅', $this->yamanoteLine->nextStationUchimawari(), '内回りの駅確認');
     }
 
     /**
@@ -44,7 +43,7 @@ class YamanoteLineTest extends TestCase
      */
     public function test_sotomawari()
     {
-        $this->assertSame('東京駅', self::$yamanoteLine->nextStationSotomawari(), '外回りの駅確認');
+        $this->assertSame('有楽町駅', $this->yamanoteLine->nextStationSotomawari(), '外回りの駅確認');
     }
 
     /**
@@ -52,11 +51,10 @@ class YamanoteLineTest extends TestCase
      */
     public function test_loopUchimawari()
     {
-        self::$yamanoteLine->reset();
         for ($i = 0; $i < 29; $i++) {
-            self::$yamanoteLine->nextStationUchimawari();
+            $this->yamanoteLine->moveCursorUchimawari();
         }
-        $this->assertSame('東京駅', self::$yamanoteLine->nextStationUchimawari(), '内回りのループ確認');
+        $this->assertSame('東京駅', $this->yamanoteLine->nextStationUchimawari(), '内回りのループ確認');
     }
 
     /**
@@ -64,11 +62,10 @@ class YamanoteLineTest extends TestCase
      */
     public function test_loopSotomawari()
     {
-        self::$yamanoteLine->reset();
         for ($i = 0; $i < 29; $i++) {
-            self::$yamanoteLine->nextStationSotomawari();
+            $this->yamanoteLine->moveCursorSotomawari();
         }
-        $this->assertSame('東京駅', self::$yamanoteLine->nextStationSotomawari(), '外回りのループ確認');
+        $this->assertSame('東京駅', $this->yamanoteLine->nextStationSotomawari(), '外回りのループ確認');
     }
 
     /**
@@ -76,7 +73,8 @@ class YamanoteLineTest extends TestCase
      */
     public function test_resetCursorIsTokyo()
     {
-        self::$yamanoteLine->reset();
-        $this->assertSame('東京駅', self::$yamanoteLine->nowStation(), '東京にリセットされるか?');
+        $this->yamanoteLine->moveCursorUchimawari();
+        $this->yamanoteLine->reset();
+        $this->assertSame('東京駅', $this->yamanoteLine->nowStation(), '東京にリセットされるか?');
     }
 }
