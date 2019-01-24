@@ -4,7 +4,9 @@
  * User: fortegp05
  */
 
-require_once __DIR__ . '/Wareki.php';
+use LaravelJpCon\Q001\Wareki;
+
+require_once __DIR__ . '/../../vendor/autoload.php';
 
 if ($argc < 2) return Wareki::ERROR_MSG;
 
