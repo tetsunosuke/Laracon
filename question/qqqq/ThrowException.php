@@ -16,19 +16,15 @@ class ThrowException
      */
     public function callExplodeThrowsException(string $str): string
     {
-        try {
-            if (strlen($str) <= 1) {
-                // 一文字しかないので引数が不正として例外にする
-                throw new \Exception(self::MESSAGE_ARGUMENT_IS_TOO_SHORT);
-            }
-            // explode ( string $delimiter , string $string [, int $limit = PHP_INT_MAX ] ) : array
-
-            // これでは明らかに引数が足らない
-            // 実際には ArgumentCountError が発生する
-            return explode($str); 
-        } catch (\Exception $e) {
-            throw $e;
+        if (strlen($str) <= 1) {
+            // 一文字しかないので引数が不正として例外にする
+            throw new \Exception(self::MESSAGE_ARGUMENT_IS_TOO_SHORT);
         }
+        // explode ( string $delimiter , string $string [, int $limit = PHP_INT_MAX ] ) : array
+
+        // これでは明らかに引数が足らない
+        // 実際には ArgumentCountError が発生する
+        return explode($str); 
     }
 
     public function callExplodeReturnTypeIsBad(string $str): string
