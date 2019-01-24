@@ -4,7 +4,7 @@
  * User: fortegp05
  */
 
-use LaravelJpCon\Q001\Wareki;
+use LaravelJpCon\q001\Wareki;
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
