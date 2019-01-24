@@ -14,7 +14,7 @@ class ThrowException
     /**
      * 入力された文字列を文字列で分割しようとはしているが...？
      */
-    public function callExplodeThrowsException(string $str): string
+    public function callExplodeThrowsException(string $str): array
     {
         if (strlen($str) <= 1) {
             // 一文字しかないので引数が不正として例外にする
